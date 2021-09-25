@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/output/schema",
+  "title": "tx.yaml",
+  "type": "object",
+  "required" : [
+    "era",
+    "net"
+  ],
+  "properties": {
+    "era": { "$ref": "#/defs/era" },
+    "net": { "$ref": "#/defs/net" },
+    "ins" : { "$ref": "#/defs/ins" } 
+  },
+  "defs": {
+    "era" : {
+      "title": "Era",
+      "type" : "string",
+      "default": "alonzo",
+      "description": "Set the era",
+      "enum" : [
+            "byron",
+            "shelley",
+            "allegra",
+            "mary",
+            "alonzo"
+            ]
+    },
+    "ins" : {
+      "title": "Inputs",
+      "type" : "array",
+      "items": {
+        "anyOf" : [
+          { "$ref" : "#/defs/tx-in-script"}, 
+          { "$ref" : "#/defs/tx-in-other"}
+        ]
+      },
+      "default": [],
+      "description": "The Txs Input"
+    },
+    "tx-in-script" : {
+      "title" : "TxIn Script",
+      "type" : "object",
+      "default" : {},
+      "description" : "One TxIn",
+      "properties" : { 
+        "script-file" : {"$ref" : "#/defs/script-file"},
+        "hash" : {"$ref" : "#/defs/utxo-hash"},
+        "id" : {"$ref" : "#/defs/utxo-id"},
+        "datum-value" : {"$ref" : "#/defs/datum-value"},
+        "redeemer-value" : {"$ref" : "#/defs/redeemer-value"}
+      }
+    },
+    "tx-in-other" : {
+      "title" : "TxIn Other",
+      "type" : "string",
+      "properties" : { 
+        "hash" : {"$ref" : "#/defs/utxo-hash"},
+        "id" : {"$ref" : "#/defs/utxo-id"},
+        "skey" : { "$ref" : "#/defs/skey" }
+      }
+    },
+    "script-file" : {
+      "title" : "Script file",
+      "type" : "string"
+    },
+    "utxo-hash" : {
+      "title" : "UTxO hash",
+      "type" : "string"
+    },
+    "utxo-id" : {
+      "title" : "UTxO id",
+      "type" : "integer"
+    },
+    "skey" : {
+      "title" : "Signing Key",
+      "description" : "path to key",
+      "type" : "string"
+    },
+    "net" : {
+      "title" : "Net (main or testnet-magic )",
+      "description" : "Either 'main' or testnet-magic number (integer)",
+      "default" : "main",
+      "type": ["string", "integer"]
+    },
+    "datum-value" : {
+      "title" : "Datum value",
+      "description" : "Datum value",
+      "type": ["string", "object"]
+    },
+    "redeemer-value" : {
+      "title" : "Redeemer value",
+      "description" : "Redeemer value",
+      "type": ["string", "object"]
+    }
+  }
+}

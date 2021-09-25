@@ -1,0 +1,9 @@
+era: alonzo
+net: main
+ins:
+  - hash: 240717e6463e9e03d387d8bf515641bcdea7a9168ccd448f737a1032a6fca306
+    id: 0 
+    scriptFile: ./donate.plutus 
+    datumValue: ""
+    redeemerValue : ""
+changeAddress : addr_test1qpxfv7jx3tutncrlkwfq72l36cquzhcuytl9twuk0uvqrq0fq3tfee5cne5dcznhuyy7a5yug6mnpjnhqfpf6nj097as25py8a
